@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Liste des étudiants</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="container mt-5">
+
+<h1>Liste des étudiants</h1>
+
+<table class="table table-bordered mt-3">
+  <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>CIN</th>
+    <th>Niveau d'étude</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="etudiant : ${etudiants}">
+    <td th:text="${etudiant.id}"></td>
+    <td th:text="${etudiant.name}"></td>
+    <td th:text="${etudiant.cin}"></td>
+    <td th:text="${etudiant.level}"></td>
+    <td>
+      <a th:href="@{/etudiants/modifier/{id}(id=${etudiant.id})}" class="btn btn-warning btn-sm">Modifier</a>
+      <a th:href="@{/etudiants/supprimer/{id}(id=${etudiant.id})}" class="btn btn-danger btn-sm">Supprimer</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<a th:href="@{/etudiants/ajouter}" class="btn btn-success mt-3">Ajouter un nouvel étudiant</a>
+</body>
+</html>
